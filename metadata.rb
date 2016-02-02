@@ -1,0 +1,11 @@
+name             'jhdc-web'
+maintainer       'Jeff Hutchison'
+maintainer_email 'jeff@jeffhutchison.com'
+license          'All rights reserved'
+description      'Installs/Configures web services'
+long_description 'Installs/Configures web services'
+version          '0.1.0'
+supports         'centos'
+
+depends 'yum-epel'
+depends 'firewalld'
