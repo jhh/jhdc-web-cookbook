@@ -7,6 +7,8 @@ end
 configure_options = node['python']['configure_options'].join(" ")
 
 version = node['python']['version']
+pip_version = node['python']['pip_version']
+
 install_path = "#{node['python']['prefix_dir']}/lib/python#{version.split(/(^\d+\.\d+)/)[1]}"
 
 remote_file "#{Chef::Config[:file_cache_path]}/Python-#{version}.tar.xz" do
@@ -24,4 +26,11 @@ bash "build-and-install-python" do
   (cd Python-#{version} && make && make install)
   EOF
   not_if { ::File.exists?(install_path) }
+end
+
+bash "upgrade-pip" do
+  code <<-EOF
+  pip3 install --force --upgrade pip==#{pip_version}
+  EOF
+  not_if "[[ `pip3 -V` =~ \"pip #{pip_version}\" ]]"
 end
