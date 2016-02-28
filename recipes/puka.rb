@@ -28,6 +28,7 @@ end
 
 file '/home/puka/.bash_profile' do
   content <<-EOT
+  # this file is managed by chef, do not edit
   if [ -f ~/.bashrc ]; then
   	. ~/.bashrc
   fi
@@ -39,6 +40,7 @@ end
 
 file '/home/puka/.gemrc' do
   content(<<-EOF)
+    # this file is managed by chef, do not edit
     gem: --no-document
   EOF
   user 'puka'
