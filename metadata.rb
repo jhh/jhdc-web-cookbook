@@ -7,5 +7,7 @@ long_description 'Installs/Configures web services'
 version          '0.1.0'
 supports         'centos'
 
+depends 'build-essential'
 depends 'yum-epel'
 depends 'firewalld'
+depends 'users'

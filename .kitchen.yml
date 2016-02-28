@@ -9,9 +9,19 @@ provisioner:
 
 platforms:
   - name: centos-7.2
+    driver_config:
+      customize:
+        cpus: 2
+        memory: 1024
 
 suites:
   - name: default
+    data_bags_path: ../jhdc-data/data_bags/
     run_list:
       - recipe[jhdc-web::default]
+    attributes:
+  - name: puka
+    data_bags_path: ../jhdc-data/data_bags/
+    run_list:
+      - recipe[jhdc-web::puka]
     attributes:

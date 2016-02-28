@@ -1,3 +1,4 @@
+include_recipe 'yum-epel'
 
 package 'nginx' do
   action :upgrade
@@ -9,5 +10,5 @@ service 'nginx' do
 end
 
 include_recipe 'firewalld::default'
-firewalld_service "http"
-firewalld_service "https"
+firewalld_service 'http'
+firewalld_service 'https'

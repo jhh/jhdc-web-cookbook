@@ -1,8 +1,8 @@
-source "https://rubygems.org"
+source 'https://rubygems.org'
 
-gem 'berkshelf', "~> 4.0"
+gem 'berkshelf', '~> 4.2'
 
 group :integration do
-  gem 'test-kitchen', "~> 1.5"
-  gem 'kitchen-vagrant', "~> 0.19"
+  gem 'test-kitchen', '~> 1.5'
+  gem 'kitchen-vagrant', '~> 0.19'
 end
