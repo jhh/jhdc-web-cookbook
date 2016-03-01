@@ -66,28 +66,9 @@ bash install_path do
   not_if { ::File.exist? "#{install_path}/bin/ruby" }
 end
 
-puka_root = node[:puka][:root]
-
-directory puka_root do
-  owner 'puka'
-  mode '2775'
+directory '/srv' do
+  owner 'root'
+  group 'web'
+  mode '0775'
   action :create
-end
-
-git puka_root do
-  repository node[:puka][:git_repository]
-  revision node[:puka][:git_revision]
-  user 'puka'
-end
-
-bash "bundle #{puka_root}" do
-  user 'puka'
-  environment rbenv_env
-  code <<-EOC
-  cd #{puka_root}
-  eval "$(rbenv init -)"
-  bundle install --deployment --without development --binstubs
-  EOC
-  not_if "cd #{puka_root} && #{rbenv_root}/shims/bundle check",
-         user: 'puka', environment: rbenv_env
 end
