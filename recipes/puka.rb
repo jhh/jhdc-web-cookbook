@@ -65,10 +65,3 @@ bash install_path do
   EOC
   not_if { ::File.exist? "#{install_path}/bin/ruby" }
 end
-
-directory '/srv' do
-  owner 'root'
-  group 'web'
-  mode '0775'
-  action :create
-end

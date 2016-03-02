@@ -4,7 +4,7 @@ maintainer_email 'jeff@jeffhutchison.com'
 license          'All rights reserved'
 description      'Installs/Configures web services'
 long_description 'Installs/Configures web services'
-version          '0.1.1'
+version          '0.5.0'
 supports         'centos'
 
 depends 'build-essential'

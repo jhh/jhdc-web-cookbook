@@ -20,7 +20,9 @@ default[:ruby_build][:git_repository] = 'git://github.com/sstephenson/' \
                                         'ruby-build.git'
 default[:ruby_build][:git_revision] = 'master'
 
-default[:puka][:root] = '/srv/puka'
 default[:puka][:ruby] = '2.3.0'
 default[:puka][:git_repository] = 'git://github.com/jhh/puka-server-sinatra.git'
 default[:puka][:git_revision] = 'master'
+default[:puka][:fqdn] = 'puka.jeffhutchison.com'
+default[:puka][:deploy] = '/srv/puka'
+default[:puka][:root] = '/usr/share/nginx/html'

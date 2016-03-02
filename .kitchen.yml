@@ -8,7 +8,7 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: centos-7.2
+  - name: jhdc-72
     driver_config:
       customize:
         cpus: 2
