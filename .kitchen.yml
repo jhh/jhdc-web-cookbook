@@ -20,6 +20,10 @@ suites:
     run_list:
       - recipe[jhdc-web::default]
     attributes:
+      nginx:
+        cert: 'sodium.jeffhutchison.com'
+        alt_certs:
+          - 'www.jeffhutchison.com'
   - name: puka
     data_bags_path: ../jhdc-data/data_bags/
     run_list:

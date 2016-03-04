@@ -13,6 +13,14 @@ default['build-essentials']['packages'] = %w(git bzip2 zlib-devel openssl-devel
                                              ncurses-devel expat-devel
                                              gdbm-devel xz-devel)
 
+default[:nginx][:cert] = 'www.jeffhutchison.com'
+default[:nginx][:alt_certs] = ['puka.jeffhutchison.com']
+default[:nginx][:root] = '/srv/www'
+default[:nginx][:acme_path] = '/.well-known/acme-challenge/'
+
+default['letsencrypt']['contact'] = 'mailto:jeff@jeffhutchison.com'
+default['letsencrypt']['endpoint'] = 'https://acme-staging.api.letsencrypt.org'
+
 default[:rbenv][:git_repository] = 'git://github.com/sstephenson/rbenv.git'
 default[:rbenv][:git_revision] = 'master'
 default[:rbenv][:root] = '/home/puka/.rbenv'
@@ -26,3 +34,4 @@ default[:puka][:git_revision] = 'master'
 default[:puka][:fqdn] = 'puka.jeffhutchison.com'
 default[:puka][:deploy] = '/srv/puka'
 default[:puka][:root] = '/usr/share/nginx/html'
+default[:puka][:ssl] = true

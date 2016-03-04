@@ -26,5 +26,17 @@ http {
     include             /etc/nginx/mime.types;
     default_type        application/octet-stream;
 
+    ssl_certificate     /etc/ssl/<%= node[:nginx][:cert] %>.crt;
+    ssl_certificate_key /etc/ssl/<%= node[:nginx][:cert] %>.key;
+
+    # letsencrypt authentication
+    server {
+      listen 80 default_server;
+
+      location <%= node[:nginx][:acme_path] %> {
+      root <%= node[:nginx][:root] %>;
+      }
+    }
+
     include /etc/nginx/conf.d/*.conf;
 }
