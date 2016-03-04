@@ -5,8 +5,11 @@
   server {
     server_name www.jeffhutchison.com;
     root <%= node[:nginx][:root] %>;
-    listen 80;
-    listen 443 ssl;
+
+    listen      80;
+    listen [::]:80;
+    listen      443 ssl;
+    listen [::]:443 ssl;
 
     # serve static files from root
     location / {

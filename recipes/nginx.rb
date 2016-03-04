@@ -20,6 +20,11 @@ include_recipe 'firewalld::default'
 firewalld_service 'http'
 firewalld_service 'https'
 
+execute 'dhparams' do
+  command "openssl dhparam -out #{node[:nginx][:dhparams]} 2048"
+  not_if { FileTest.file?(node[:nginx][:dhparams]) }
+end
+
 template '/etc/nginx/conf.d/puka.conf' do
   source 'nginx-puka.conf.erb'
   notifies :restart, 'service[nginx]'

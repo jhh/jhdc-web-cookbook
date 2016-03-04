@@ -17,6 +17,7 @@ default[:nginx][:cert] = 'www.jeffhutchison.com'
 default[:nginx][:alt_certs] = ['puka.jeffhutchison.com']
 default[:nginx][:root] = '/srv/www'
 default[:nginx][:acme_path] = '/.well-known/acme-challenge/'
+default[:nginx][:dhparams] = '/etc/nginx/dhparams.pem'
 
 default['letsencrypt']['contact'] = 'mailto:jeff@jeffhutchison.com'
 default['letsencrypt']['endpoint'] = 'https://acme-staging.api.letsencrypt.org'
