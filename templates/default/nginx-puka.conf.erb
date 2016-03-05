@@ -17,8 +17,8 @@ upstream unicorn_server {
   }
 
   server {
-    listen      443 ssl;
-    listen [::]:443 ssl;
+    listen      443 ssl spdy;
+    listen [::]:443 ssl spdy;
     add_header Strict-Transport-Security "max-age=31536000";
 <% else %>
   server {
