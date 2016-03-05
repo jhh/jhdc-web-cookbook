@@ -18,14 +18,21 @@ suites:
   - name: default
     data_bags_path: ../jhdc-data/data_bags/
     run_list:
-      - recipe[jhdc-web::default]
+      - recipe[jhdc-web]
     attributes:
       nginx:
-        cert: 'sodium.jeffhutchison.com'
-        alt_certs:
-          - 'www.jeffhutchison.com'
+        letsencrypt: false
   - name: puka
     data_bags_path: ../jhdc-data/data_bags/
     run_list:
       - recipe[jhdc-web::puka]
     attributes:
+      nginx:
+        letsencrypt: false
+  - name: nodejs
+    data_bags_path: ../jhdc-data/data_bags/
+    run_list:
+      - recipe[jhdc-web::nodejs]
+    attributes:
+      nginx:
+        letsencrypt: false

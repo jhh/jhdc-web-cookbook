@@ -8,13 +8,16 @@ transport:
   name: rsync
 
 suites:
-  - name: default
+  - name: letsencrypt
     data_bags_path: ../jhdc-data/data_bags/
     run_list:
       - recipe[jhdc-web::default]
     attributes:
       nginx:
-        cert: 'sodium.jeffhutchison.com'
+        letsencrypt: true
+        cert: "sodium.jeffhutchison.com"
         alt_certs:
-          - 'www.jeffhutchison.com'
-          - 'potassium.jeffhutchison.com'
+          - "rubidium.jeffhutchison.com"
+          - "potassium.jeffhutchison.com"
+      letsencrypt:
+        endpoint: "https://acme-staging.api.letsencrypt.org"

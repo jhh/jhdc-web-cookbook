@@ -40,8 +40,6 @@ template '/etc/nginx/nginx.conf' do
   notifies :restart, 'service[nginx]', :immediate
 end
 
-include_recipe 'letsencrypt'
-
 directory node[:nginx][:root] do
   action :create
   group 'web'
@@ -53,12 +51,16 @@ end
   end
 end
 
-letsencrypt_certificate node[:nginx][:cert] do
-  alt_names node[:nginx][:alt_certs]
-  fullchain "/etc/ssl/#{node[:nginx][:cert]}.crt"
-  chain     "/etc/ssl/#{node[:nginx][:cert]}-chain.crt"
-  key       "/etc/ssl/#{node[:nginx][:cert]}.key"
-  method    'http'
-  wwwroot   node[:nginx][:root]
-  notifies  :reload, 'service[nginx]'
+if node[:nginx][:letsencrypt]
+  include_recipe 'letsencrypt'
+
+  letsencrypt_certificate node[:nginx][:cert] do
+    alt_names node[:nginx][:alt_certs]
+    fullchain "/etc/ssl/#{node[:nginx][:cert]}.crt"
+    chain     "/etc/ssl/#{node[:nginx][:cert]}-chain.crt"
+    key       "/etc/ssl/#{node[:nginx][:cert]}.key"
+    method    'http'
+    wwwroot   node[:nginx][:root]
+    notifies  :reload, 'service[nginx]'
+  end
 end
