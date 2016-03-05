@@ -15,6 +15,7 @@ default['build-essentials']['packages'] = %w(git bzip2 zlib-devel openssl-devel
                                              geoip-devel tokyocabinet-devel)
 
 default[:nginx][:letsencrypt] = true
+default[:nginx][:repo_config] = '/etc/yum.repos.d/nginx.repo'
 default[:nginx][:cert] = 'www.jeffhutchison.com'
 default[:nginx][:alt_certs] = ['puka.jeffhutchison.com']
 default[:nginx][:root] = '/srv/www'

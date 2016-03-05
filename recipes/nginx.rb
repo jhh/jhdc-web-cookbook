@@ -4,10 +4,14 @@ letsencrypt_selfsigned node[:nginx][:cert] do
   key "/etc/ssl/#{node[:nginx][:cert]}.key"
 end
 
-include_recipe 'yum-epel'
+template node[:nginx][:repo_config] do
+  source 'nginx.repo.erb'
+  variables osrelease: node['platform_version'].split('.').first
+end
 
 package 'nginx' do
   action :upgrade
+  options '--disablerepo=* --enablerepo=nginx'
   notifies :restart, 'service[nginx]'
 end
 
@@ -43,11 +47,13 @@ end
 directory node[:nginx][:root] do
   action :create
   group 'web'
+  only_if 'getent group web' # enables .kitchen.yml nginx suite to run
 end
 
 %w(index.html robots.txt).each do |file|
   cookbook_file "#{node[:nginx][:root]}/#{file}" do
     source file
+    only_if { FileTest.directory?(node[:nginx][:root]) }
   end
 end
 

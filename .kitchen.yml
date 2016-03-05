@@ -39,3 +39,9 @@ suites:
     run_list:
       - recipe[jhdc-web::goaccess]
     attributes:
+  - name: nginx
+    run_list:
+      - recipe[jhdc-web::nginx]
+    attributes:
+      nginx:
+        letsencrypt: false

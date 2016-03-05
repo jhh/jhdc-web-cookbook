@@ -1,4 +1,3 @@
-ver = node[:nodejs][:major]
 repo_config = node[:nodejs][:repo_config]
 
 execute 'install node repository' do
