@@ -37,3 +37,9 @@ default[:puka][:fqdn] = 'puka.jeffhutchison.com'
 default[:puka][:deploy] = '/srv/puka'
 default[:puka][:root] = '/usr/share/nginx/html'
 default[:puka][:ssl] = true
+
+default[:nodejs][:major] = '5'
+default[:nodejs][:setup_url] =
+  "https://rpm.nodesource.com/setup_#{nodejs[:major]}.x"
+default[:nodejs][:repo_config] = '/etc/yum.repos.d/nodesource-el.repo'
+default[:nodejs][:repo] = "https://rpm.nodesource.com/pub_#{nodejs[:major]}"
