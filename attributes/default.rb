@@ -35,7 +35,7 @@ default[:puka][:git_repository] = 'git://github.com/jhh/puka-server-sinatra.git'
 default[:puka][:git_revision] = 'master'
 default[:puka][:fqdn] = 'puka.jeffhutchison.com'
 default[:puka][:deploy] = '/srv/puka'
-default[:puka][:root] = '/usr/share/nginx/html'
+default[:puka][:root] = '/srv/puka-static/current/public'
 default[:puka][:ssl] = true
 
 default[:nodejs][:major] = '5'
