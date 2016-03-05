@@ -30,12 +30,27 @@ http {
     include             /etc/nginx/mime.types;
     default_type        application/octet-stream;
 
-    ssl_certificate     /etc/ssl/<%= node[:nginx][:cert] %>.crt;
-    ssl_certificate_key /etc/ssl/<%= node[:nginx][:cert] %>.key;
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 24h;
+    ssl_buffer_size 1400;
+    ssl_session_tickets off;
+
     ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
     ssl_prefer_server_ciphers on;
     ssl_ciphers AES256+EECDH:AES256+EDH:!aNULL;
+
+    ssl_certificate     /etc/ssl/<%= node[:nginx][:cert] %>.crt;
+    ssl_certificate_key /etc/ssl/<%= node[:nginx][:cert] %>.key;
     ssl_dhparam <%= node[:nginx][:dhparams] %>;
+
+    ssl_stapling on;
+    ssl_stapling_verify on;
+    resolver 8.8.4.4 8.8.8.8 valid=300s;
+    resolver_timeout 10s;
+
+
+    add_header X-Frame-Options SAMEORIGIN;
+    add_header X-Content-Type-Options nosniff;
 
     # letsencrypt authentication
     server {
