@@ -11,7 +11,8 @@ default['build-essentials']['packages'] = %w(git bzip2 zlib-devel openssl-devel
                                              sqlite-devel bzip2-devel
                                              libffi-devel readline-devel
                                              ncurses-devel expat-devel
-                                             gdbm-devel xz-devel)
+                                             gdbm-devel xz-devel
+                                             geoip-devel tokyocabinet-devel)
 
 default[:nginx][:letsencrypt] = true
 default[:nginx][:cert] = 'www.jeffhutchison.com'
@@ -43,3 +44,6 @@ default[:nodejs][:setup_url] =
   "https://rpm.nodesource.com/setup_#{nodejs[:major]}.x"
 default[:nodejs][:repo_config] = '/etc/yum.repos.d/nodesource-el.repo'
 default[:nodejs][:repo] = "https://rpm.nodesource.com/pub_#{nodejs[:major]}"
+
+default[:goaccess][:version] = '0.9.8'
+default[:goaccess][:url] = 'http://tar.goaccess.io'
